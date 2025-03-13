@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catering Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        header {
+            background-color: #ff6600;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            background-color: #333;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 18px;
+        }
+        section {
+            padding: 40px;
+            text-align: center;
+            color: black;
+            border:#ff6600;
+        }
+        .menu-container {
+            display:grid ;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .menu-item {
+            background-color: rgb(220, 228, 10);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .menu-item:hover{
+            background-color: rgb(72, 245, 9);
+            color: red;
+        }
+        .menu-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .contact-container {
+            background-color: rgb(237, 228, 228);
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .contact-container h3 {
+            text-align: center;
+            color: #ff6600;
+        }
+        .contact-container p {
+            margin: 10px 0;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Jeelani Catering Services</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home">
+        <h2>Delicious Food for Every Occasion</h2>
+        <p>We provide high-quality catering services for weddings, parties, and corporate events.</p>
+        <img src="groupphotoctr.jpg">
+    </section>
+    
+    <section id="menu">
+        <h2>Our Menu</h2>
+        <p>Explore our variety of dishes and customize your order.</p>
+        <div class="menu-container">
+            <div class="menu-item">
+               <a href="a1.html"><img src="chicken items\th (1).jpeg" ></a>
+                <h3> Chicken Items</h3>
+                <p>Delicious chicken with spices.</p>
+            </div>
+            <div class="menu-item">
+                <img src="chicken items\mutton biryani.jpeg" alt="Dish ">
+                <h3>Mutton Items</h3>
+                <p> Savor Delicious Mutton & Dum Biryani Varieties</p>
+            </div>
+            <div class="menu-item">
+                <img src="chicken items\fruit.jpg" alt="Dish ">
+                <h3>Fruit Salad </h3>
+                <p>Healthy and refreshing seasonal fruits.</p>
+            </div>
+            <div class="menu-item">
+                <img src="chicken items\icecream.jpeg" alt="Dish ">
+                <h3>Icream Stall</h3>
+                <p>Tasty icreams with good flavours.</p>
+        </div>
+    </section>
+    
+    <section id="services">
+        <h2>Our Services</h2>
+        <p>We offer buffet catering, event planning, and custom meal plans.</p>
+    </section>
+    
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Reach out to us for bookings and inquiries.</p>
+        <div class="contact-container">
+            <h3>Contact Information</h3>
+            <p><strong>Name:</strong> Jeelani Basha</p>
+            <p><strong>Phone:</strong> <a href="tel:8143122747">8143122747</a>or<a href="tel:7780154500">7780154500</a></p>
+            <p><strong>Email:</strong> <a href="mailto:jeelani747@gmail.com">jeelani747@gmail.com</a></p>
+            <p><strong>Address:</strong>Eswaramma colony , Madanapalli , Annamya(D) , Andhrapradesh , India</p>
+            <p><strong>Working Hours:</strong> AnyTime: 24/7</p>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Catering Services. All rights reserved.</p>
+    </footer>
+</body>
+</html>
