@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicious Ice Cream</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+            text-align: center;
+        }
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        .menu-items:hover {
+            transform: scale(1.05);
+            background-color: #ffeb99;
+        }
+        img {
+            width: 400px;
+            height: 300px;
+            padding: 5px;
+            border-radius: 10px;
+            border: 2px groove rgb(246, 49, 15);
+            object-fit: cover;
+        }
+        p {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 5px;
+            font-weight: bold;
+            color: #8b0000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Delicious Ice Cream Menu</h1>
+    <main>
+        <div class="menu-items"><img src="chicken items/ice cream/ice1.jpeg" alt="Ice Cream 1"><p>Chocolate Ice Cream</p></div> 
+        <div class="menu-items"><img src="chicken items/ice cream/ice2.jpg" alt="Ice Cream 2"><p>Vanilla Ice Cream</p></div>
+        <div class="menu-items"><img src="chicken items/ice cream/ice4.webp" alt="Ice Cream 3"><p>Strawberry Ice Cream</p></div>
+        <div class="menu-items"><img src="chicken items/ice cream/ice5.jpg" alt="Ice Cream 4"><p>Butterscotch Ice Cream</p></div>
+        <div class="menu-items"><img src="chicken items/ice cream/ice6.jpeg" alt="Ice Cream 5"><p>Mint Choco Chip Ice Cream</p></div>
+        <div class="menu-items"><img src="chicken items/ice cream/icm3.jpeg" alt="Ice Cream 6"><p>Blueberry Ice Cream</p></div>
+    </main>
+</body>
+</html>
