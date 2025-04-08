@@ -58,7 +58,7 @@ html, body {
     overflow-x: hidden; /* Prevents horizontal scrolling */
 }
 header {
-    padding: 20px 0;
+    padding: 15px 0;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -75,12 +75,22 @@ header {
     gap: 20px;
 }
 
+/* For right-side logo layout */
+.logo-right .header-content {
+    justify-content: space-between;
+}
+
+/* For left-side logo layout (default) */
+.logo-left .header-content {
+    justify-content: flex-start;
+}
+
 .logo-container {
     flex-shrink: 0;
 }
 
 .logo-image {
-    width: 80px;
+    width: 70px;
     height: auto;
 }
 
@@ -94,11 +104,11 @@ header {
     font-size: 28px;
     color: #333;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .company-name span {
     color: #e6b800; /* Gold color matching the logo */
-    font-weight: 600;
 }
 
 .tagline {
@@ -113,10 +123,12 @@ header {
     .header-content {
         flex-direction: column;
         text-align: center;
+        gap: 10px;
     }
-    
-    .logo-image {
-        margin-bottom: 10px;
+
+    /* Keep logo order on mobile regardless of desktop position */
+    .logo-right .header-content {
+        flex-direction: column-reverse;
     }
 }
 
