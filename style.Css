@@ -57,4 +57,66 @@ html, body {
     height: 100%;
     overflow-x: hidden; /* Prevents horizontal scrolling */
 }
+header {
+    padding: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-container {
+    flex-shrink: 0;
+}
+
+.logo-image {
+    width: 80px;
+    height: auto;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.company-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.company-name span {
+    color: #e6b800; /* Gold color matching the logo */
+    font-weight: 600;
+}
+
+.tagline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo-image {
+        margin-bottom: 10px;
+    }
+}
 
