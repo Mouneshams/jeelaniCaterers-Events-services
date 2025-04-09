@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -649,22 +650,50 @@
                 padding: 60px 15px;
             }
         }
+    
+        .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2; /* Places text above the background logo */
+    padding: 20px 0;
+    width: 100%;
+}
+
+.text-content {
+    width: 100%;
+    text-align: center; /* Or align as needed */
+}
+
+.company-name {
+    margin: 0;
+    font-size: 2.2rem;
+    position: relative; /* Ensures text remains above logo */
+}
+
+.tagline {
+    margin: 5px 0 0;
+    font-size: 1rem;
+    position: relative; /* Ensures text remains above logo */
+}
     </style>
-</head>
-<body>
-<header>
-    <div class="container">
-        <div class="header-content">
-            <div class="logo-container">
-                <img src="ctrphotos/logo.png" alt="Jeelani Caterers Logo" class="logo-image">
-            </div>
-            <div class="text-content">
-                <h1 class="company-name">Jeelani <span>Catering</span></h1>
-                <p class="tagline">Exquisite Culinary Experiences for Every Occasion</p>
-            </div>
-        </div>
+    <head>
+<div class="container">
+    <div class="header-content">
+     
+      <div class="text-content">
+        <h1 class="company-name">Jeelani Catering Services</h1>
+        <p class="tagline">Delicious food for every occasion</p>
+      </div>
     </div>
-</header>
+  </div>
+  </head>
     
     <nav id="navbar">
         <div class="container">
