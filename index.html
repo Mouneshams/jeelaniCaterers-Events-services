@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,676 +11,7 @@
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap">
     
-    <style>
-        /* Global Styles */
-        :root {
-            --primary-color: #ff6600;
-            --secondary-color: #1c1414;
-            --accent-color: #ffeb99;
-            --text-color: #333;
-            --light-bg: #f8f8f8;
-            --white: #ffffff;
-            --shadow: 0 5px 15px rgba(0,0,0,0.1);
-            --hover-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 70px;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-color);
-            background-color: var(--light-bg);
-            line-height: 1.6;
-        }
-        
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 20px;
-        }
-        
-        h2 {
-            position: relative;
-            display: inline-block;
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-        
-        h2::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--primary-color);
-        }
-        
-        p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-        }
-        
-        section {
-            padding: 80px 20px;
-            position: relative;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            border: 2px solid var(--primary-color);
-        }
-        
-        .btn:hover {
-            background-color: transparent;
-            color: var(--primary-color);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-        
-        /* Header & Navigation */
-        header {
-            position: relative;
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #3a3232 100%);
-            color: var(--white);
-            text-align: center;
-            padding: 15px 0;
-            box-shadow: var(--shadow);
-        }
-        
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 10px;
-        }
-        
-        .logo span {
-            color: var(--primary-color);
-        }
-        
-        nav {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--secondary-color);
-            z-index: 1000;
-            padding: 15px 0;
-            transition: all 0.4s ease;
-        }
-        
-        nav.sticky {
-            padding: 10px 0;
-            box-shadow: var(--shadow);
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin: 0 20px;
-        }
-        
-        nav ul li a {
-            color: var(--white);
-            font-weight: 500;
-            font-size: 1rem;
-            padding: 10px 5px;
-            position: relative;
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-        
-        nav ul li a:hover::after,
-        nav ul li a.active::after {
-            width: 100%;
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-        }
-        
-        /* Hero Section */
-        #home {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            overflow: hidden;
-            padding: 0;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 30px;
-            border-radius: 15px;
-            background-color: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            animation: fadeIn 1s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('chicken items/groupphotoctr.jpg') no-repeat center center/cover;
-            filter: brightness(0.7) saturate(1.3);
-            z-index: 1;
-            animation: zoomEffect 20s infinite alternate;
-        }
-        
-        @keyframes zoomEffect {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
-        
-        /* Menu Section */
-        #menu {
-            background-color: var(--white);
-            text-align: center;
-        }
-        
-        .menu-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .menu-item {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.4s ease-in-out;
-            position: relative;
-        }
-        
-        .menu-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--hover-shadow);
-        }
-        
-        .menu-item img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: all 0.5s ease;
-        }
-        
-        .menu-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .menu-item-content {
-            padding: 20px;
-            position: relative;
-        }
-        
-        .menu-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-        
-        .menu-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .menu-item:hover .menu-overlay {
-            opacity: 1;
-        }
-        
-        /* Services Section */
-        #services {
-            background-color: var(--light-bg);
-            text-align: center;
-        }
-        
-        .services-title {
-            margin-bottom: 50px;
-        }
-        
-        .services-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .service-item {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            transition: all 0.4s ease;
-            text-align: center;
-        }
-        
-        .service-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--hover-shadow);
-        }
-        
-        .service-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        
-        .service-item h3 {
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-        }
-        
-        /* Features Section */
-        #features {
-            background: linear-gradient(to right, #fff6f0, #fff);
-            text-align: center;
-        }
-        
-        .features-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-        }
-        
-        .feature-item {
-            flex: 1;
-            min-width: 250px;
-            max-width: 350px;
-            padding: 20px;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-        
-        .feature-item:hover {
-            transform: translateY(-10px);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        
-        .feature-item h3 {
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-        }
-        
-        /* Order Section */
-        #Order {
-            background-color: var(--white);
-            text-align: center;
-        }
-        
-        .order-container {
-            max-width: 900px;
-            margin: 40px auto 0;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-        
-        /* Contact Section */
-        #contact {
-            text-align: center;
-            background: linear-gradient(to bottom, var(--light-bg), #fff);
-        }
-        
-        .contact-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 800px;
-            margin: 40px auto 0;
-            padding: 40px;
-            background-color: var(--white);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-            width: 100%;
-        }
-        
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: var(--light-bg);
-            flex: 1;
-            min-width: 200px;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-        }
-        
-        .contact-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        
-        .contact-item h4 {
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .contact-item p, .contact-item a {
-            color: var(--text-color);
-        }
-        
-        .contact-item a:hover {
-            color: var(--primary-color);
-        }
-
-        #services {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        h1, h2 {
-            text-align: center;
-            margin-bottom: 15px;
-            color: #8b0000;
-        }
-        
-        .main-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        
-        .menu-items1 {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .menu-items1:hover {
-            transform: translateY(-5px);
-        }
-        
-        .menu-items1 img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px 8px 0 0;
-        }
-        
-        .menu-items1 p {
-            padding: 10px;
-            text-align: center;
-            font-weight: bold;
-        }
-        
-        @media (max-width: 600px) {
-            .main-gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    
-        
-        /* Footer */
-        footer {
-            background-color: var(--secondary-color);
-            color: var(--white);
-            text-align: center;
-            padding: 30px 0;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-        
-        .social-link:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-5px);
-        }
-        
-        /* Animation */
-        .reveal {
-            position: relative;
-            transform: translateY(50px);
-            opacity: 0;
-            transition: all 1s ease;
-        }
-        
-        .reveal.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        /* Responsive Styles */
-        @media screen and (max-width: 992px) {
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-        }
-        
-        @media screen and (max-width: 768px) {
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--secondary-color);
-                padding: 20px 0;
-                box-shadow: var(--shadow);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 10px 0;
-            }
-            
-            .hamburger {
-                display: block;
-                position: absolute;
-                right: 20px;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-            
-            .hero-content {
-                padding: 20px;
-            }
-            
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            
-            .menu-container {
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            }
-            
-            .contact-info {
-                flex-direction: column;
-            }
-        }
-        
-        @media screen and (max-width: 480px) {
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-            
-            section {
-                padding: 60px 15px;
-            }
-        }
-    
-        .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-    position: relative;
-}
-
-.header-content {
-    position: relative;
-    z-index: 2; /* Places text above the background logo */
-    padding: 20px 0;
-    width: 100%;
-}
-
-.text-content {
-    width: 100%;
-    text-align: center; /* Or align as needed */
-}
-
-.company-name {
-    margin: 0;
-    font-size: 2.2rem;
-    position: relative; /* Ensures text remains above logo */
-}
-
-.tagline {
-    margin: 5px 0 0;
-    font-size: 1rem;
-    position: relative; /* Ensures text remains above logo */
-}
-    </style>
+    <link rel="stylesheet" href="style1.css">
     <head>
 <div class="container">
     <div class="header-content">
@@ -704,6 +33,8 @@
                 <li><a href="#features">Features</a></li>
                 <li><a href="#Order">Order</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="login.html" class="login-link">Login</a></li>
+                <li><a href="register.html" class="register-link">Register</a></li>
             </ul>
             <button class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
@@ -980,8 +311,10 @@
             <h2>Place Your Order</h2>
             <p>Fill out the form below to place your catering order, and we'll get back to you promptly.</p>
             
-            <div class="order-container">
-                <iframe src="https://forms.gle/we4viG3ja7MWmYEQ7" width="100%" height="600px" frameborder="0"></iframe>
+            <div class="order-container text-center">
+                <a href="order.html" class="btn btn-order">
+                    <i class="fas fa-utensils me-2"></i>Place Your Order Now
+                </a>
             </div>
         </div>
     </section>
@@ -1035,84 +368,176 @@
     </footer>
     
     <script>
-        // Sticky Navigation
-        const navbar = document.getElementById('navbar');
-        const menuLinks = document.querySelectorAll('#menu-list li a');
-        const hamburger = document.getElementById('hamburger');
-        const menuList = document.getElementById('menu-list');
-        
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                navbar.classList.add('sticky');
-            } else {
-                navbar.classList.remove('sticky');
+        // Improve navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.getElementById('navbar');
+            const menuLinks = document.querySelectorAll('#menu-list li a');
+            const hamburger = document.getElementById('hamburger');
+            const menuList = document.getElementById('menu-list');
+            
+            // Sticky navigation
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('sticky');
+                } else {
+                    navbar.classList.remove('sticky');
+                }
+                
+                // Update active menu item
+                let current = '';
+                const sections = document.querySelectorAll('section');
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.scrollY >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                menuLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Mobile menu toggle with improved animation
+            hamburger.addEventListener('click', function() {
+                menuList.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!navbar.contains(event.target) && menuList.classList.contains('active')) {
+                    menuList.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+
+            // Smooth scrolling with offset
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const navHeight = navbar.offsetHeight;
+                        const targetPosition = targetElement.offsetTop - navHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (menuList.classList.contains('active')) {
+                            menuList.classList.remove('active');
+                            hamburger.classList.remove('active');
+                        }
+                    }
+                });
+            });
+
+            // Add loading state to buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (!this.classList.contains('disabled')) {
+                        this.classList.add('loading');
+                        setTimeout(() => {
+                            this.classList.remove('loading');
+                        }, 1000);
+                    }
+                });
+            });
+
+            // Add reveal animations
+            function reveal() {
+                const reveals = document.querySelectorAll('.reveal');
+                
+                reveals.forEach(element => {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < windowHeight - elementVisible) {
+                        element.classList.add('active');
+                    }
+                });
             }
             
-            // Update active menu item
-            let current = '';
-            const sections = document.querySelectorAll('section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (window.scrollY >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            menuLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
+            window.addEventListener('scroll', reveal);
+            reveal(); // Initial check on page load
         });
-        
-        // Mobile Menu Toggle
-        hamburger.addEventListener('click', function() {
-            menuList.classList.toggle('active');
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (menuList.classList.contains('active')) {
-                        menuList.classList.remove('active');
-                    }
-                }
-            });
-        });
-        
-        // Reveal animations on scroll
-        function reveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            reveals.forEach(element => {
-                const windowHeight = window.innerHeight;
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('active');
-                }
-            });
+    </script>
+
+
+    <!-- Modern Modal structure -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="Full size image">
+            <div class="modal-caption"></div>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal elements
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const modalCaption = document.querySelector(".modal-caption");
+        const closeBtn = document.getElementsByClassName("close")[0];
+
+        // Get all images in the gallery
+        const galleryImages = document.querySelectorAll('.menu-items1 img');
+
+        // Function to open modal
+        function openModal(imgSrc, caption) {
+            modalImg.src = imgSrc;
+            modalCaption.textContent = caption;
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
         }
-        
-        window.addEventListener('scroll', reveal);
-        reveal(); // Initial check on page load
+
+        // Function to close modal
+        function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Add click event to all gallery images
+        galleryImages.forEach(img => {
+            img.onclick = function() {
+                const caption = this.nextElementSibling.textContent;
+                openModal(this.src, caption);
+            }
+        });
+
+        // Close modal when clicking the close button
+        closeBtn.onclick = closeModal;
+
+        // Close modal when clicking outside the image
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.classList.contains('show')) {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
+
