@@ -4,75 +4,257 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delicious Ice Cream</title>
-    <style> 
-        body {
+    <style>
+        /* Reset and Base Styles */
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            /* 3D Black Background using radial gradient */
-            background: radial-gradient(circle at center, #1a1a1a, #000000);
-            background-size: cover;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
             color: white;
             min-height: 100vh;
-            perspective: 1000px;
+            line-height: 1.6;
         }
 
+        /* Header Styles */
         h1 {
             text-align: center;
-            padding: 20px;
-            font-size: 36px;
-            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-            color: #ffffff;
+            padding: 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            position: relative;
         }
 
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff69b4, transparent);
+        }
+
+        /* Main Content Layout */
         main {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 10px;
-            margin: auto;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
+        /* Menu Items Card */
         .menu-items {
-            background: linear-gradient(145deg, #2b2b2b, #1c1c1c);
-            box-shadow: 10px 10px 20px #0a0a0a, -10px -10px 20px #2a2a2a;
-            padding: 20px;
-            width: 200px;
-            height: 180px;
-            margin: auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
             text-align: center;
-            border-radius: 10px;
-            border: 2px ridge crimson;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-items::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
         }
 
         .menu-items:hover {
-            background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
-            transform: scale(1.05) rotateY(5deg);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
         }
 
-        img {
-            width: 150px;
-            height: 100px;
-            padding: 5px;
+        .menu-items:hover::before {
+            transform: translateX(100%);
+        }
+
+        /* Image Styles */
+        .menu-items img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
             border-radius: 10px;
-            border-style: groove;
-            border-color: rgb(246, 49, 15);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        p {
-            text-align: center;
-            font-size: 18px;
-            margin-top: 10px;
-            color: #f0f0f0;
+        .menu-items img:hover {
+            transform: scale(1.05);
+            border-color: #ff69b4;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
         }
 
-        p:hover {
-            background-color: rgb(243, 235, 14);
-            color: black;
+        /* Caption Styles */
+        .menu-items p {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: #fff;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
             border-radius: 5px;
-            padding: 2px;
+        }
+
+        .menu-items p:hover {
+            background: rgba(255, 105, 180, 0.2);
+            color: #ff69b4;
+        }
+
+        /* Modern Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: modalFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                transform: scale(0.95) translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .close {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 105, 180, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .close:hover {
+            background: #ff69b4;
+            transform: rotate(90deg);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .modal-caption {
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            background: rgba(255, 105, 180, 0.2);
+            border-radius: 8px;
+            max-width: 80%;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+                padding: 1.5rem;
+            }
+
+            .menu-items {
+                padding: 1rem;
+            }
+
+            .close {
+                top: -40px;
+                right: -40px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .menu-items img {
+                height: 180px;
+            }
         }
     </style>
 </head>
@@ -104,5 +286,64 @@
             <p>Blueberry Ice Cream</p>
         </div>
     </main>
+
+    <!-- Modern Modal structure -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="Full size image">
+            <div class="modal-caption"></div>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal elements
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const modalCaption = document.querySelector(".modal-caption");
+        const closeBtn = document.getElementsByClassName("close")[0];
+
+        // Get all images in the gallery
+        const galleryImages = document.querySelectorAll('.menu-items img');
+
+        // Function to open modal
+        function openModal(imgSrc, caption) {
+            modalImg.src = imgSrc;
+            modalCaption.textContent = caption;
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to close modal
+        function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Add click event to all gallery images
+        galleryImages.forEach(img => {
+            img.onclick = function() {
+                const caption = this.nextElementSibling.textContent;
+                openModal(this.src, caption);
+            }
+        });
+
+        // Close modal when clicking the close button
+        closeBtn.onclick = closeModal;
+
+        // Close modal when clicking outside the image
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.classList.contains('show')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
