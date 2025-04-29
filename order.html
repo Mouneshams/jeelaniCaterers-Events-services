@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catering Order Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            min-height: 100vh;
+        }
+        .form-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        .form-title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        .form-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #28a745;
+            border-radius: 2px;
+        }
+        .form-card {
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        .form-card:hover {
+            transform: translateY(-5px);
+        }
+        .form-card .card-header {
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            padding: 1.5rem;
+        }
+        .form-card .card-header h5 {
+            margin: 0;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-card .card-body {
+            padding: 2rem;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+        .form-check-input:checked {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+            color: white;
+            padding: 1rem 3rem;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+            color: white;
+        }
+        .invalid-feedback {
+            font-size: 0.875rem;
+            color: #dc3545;
+        }
+        .form-check {
+            margin-bottom: 1rem;
+        }
+        .form-check-label {
+            color: #2c3e50;
+        }
+        .section-icon {
+            font-size: 1.2rem;
+        }
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+        .progress {
+            height: 8px;
+            border-radius: 4px;
+        }
+        .progress-bar {
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+        }
+        .service-categories {
+            padding: 1rem;
+        }
+        .service-category {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .service-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .service-title {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid;
+            position: relative;
+        }
+        .service-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: currentColor;
+        }
+        .service-option {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .service-option:hover {
+            background-color: rgba(40, 167, 69, 0.1);
+            transform: translateX(5px);
+        }
+        .form-check-input:checked {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .form-check-label {
+            color: #2c3e50;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        /* Color variations for different service categories */
+        .service-category:nth-child(1) {
+            border-left: 4px solid #e74c3c;
+        }
+        .service-category:nth-child(1) .service-title {
+            color: #e74c3c;
+        }
+        .service-category:nth-child(2) {
+            border-left: 4px solid #3498db;
+        }
+        .service-category:nth-child(2) .service-title {
+            color: #3498db;
+        }
+        .service-category:nth-child(3) {
+            border-left: 4px solid #f1c40f;
+        }
+        .service-category:nth-child(3) .service-title {
+            color: #f1c40f;
+        }
+        .form-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .form-card .card-header {
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+            border-radius: 20px 20px 0 0 !important;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="form-title">Catering Order Form</h2>
+        
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+
+        <form id="cateringForm" class="needs-validation" novalidate>
+            <!-- Customer Details Card -->
+            <div class="card form-card">
+                <div class="card-header">
+                    <h5><i class="fas fa-user section-icon"></i> Customer Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                            <div class="invalid-feedback">Please enter your full name.</div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="contactNo" class="form-label">Contact Number</label>
+                            <input type="tel" class="form-control" id="contactNo" required>
+                            <div class="invalid-feedback">Please enter a valid contact number.</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="email" class="form-label">Email (Optional)</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" required>
+                            <div class="invalid-feedback">Please enter your address.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Details Card -->
+            <div class="card form-card">
+                <div class="card-header">
+                    <h5><i class="fas fa-calendar-alt section-icon"></i> Event Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="eventDate" class="form-label">Date of Event</label>
+                            <input type="date" class="form-control" id="eventDate" required>
+                            <div class="invalid-feedback">Please select a date.</div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="eventTime" class="form-label">Time</label>
+                            <input type="time" class="form-control" id="eventTime" required>
+                            <div class="invalid-feedback">Please select a time.</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="hallName" class="form-label">Function Hall Name</label>
+                            <input type="text" class="form-control" id="hallName" required>
+                            <div class="invalid-feedback">Please enter the hall name.</div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="guestCount" class="form-label">Number of Guests</label>
+                            <input type="number" class="form-control" id="guestCount" min="1" required>
+                            <div class="invalid-feedback">Please enter the number of guests.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Section Card -->
+            <div class="card form-card">
+                <div class="card-header">
+                    <h5><i class="fas fa-utensils section-icon"></i> Menu Section</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <label class="form-label">Food Type</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="foodType" id="veg" value="veg" required>
+                            <label class="form-check-label" for="veg">Vegetarian</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="foodType" id="nonVeg" value="nonVeg">
+                            <label class="form-check-label" for="nonVeg">Non-Vegetarian</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="foodType" id="both" value="both">
+                            <label class="form-check-label" for="both">Both</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <label for="vegPlates" class="form-label">Vegetarian Plates</label>
+                            <input type="number" class="form-control" id="vegPlates" min="0">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label for="nonVegPlates" class="form-label">Non-Vegetarian Plates</label>
+                            <input type="number" class="form-control" id="nonVegPlates" min="0">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label for="specialTables" class="form-label">Special Table Count</label>
+                            <input type="number" class="form-control" id="specialTables" min="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Requirements Card -->
+            <div class="card form-card">
+                <div class="card-header">
+                    <h5><i class="fas fa-concierge-bell section-icon"></i> Service Requirements</h5>
+                </div>
+                <div class="card-body">
+                    <div class="service-categories">
+                        <!-- Event Catering Services -->
+                        <div class="service-category mb-4">
+                            <h6 class="service-title"><i class="fas fa-glass-cheers"></i> Event Catering Services</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check service-option">
+                                        <input class="form-check-input" type="checkbox" id="fullEvent">
+                                        <label class="form-check-label" for="fullEvent">Full Event Package</label>
+                                    </div>
+                                    <div class="form-check service-option">
+                                        <input class="form-check-input" type="checkbox" id="wedding">
+                                        <label class="form-check-label" for="wedding">Wedding Catering</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check service-option">
+                                        <input class="form-check-input" type="checkbox" id="corporate">
+                                        <label class="form-check-label" for="corporate">Corporate Events</label>
+                                    </div>
+                                    <div class="form-check service-option">
+                                        <input class="form-check-input" type="checkbox" id="party">
+                                        <label class="form-check-label" for="party">Party Catering</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Food Catering Services -->
+                        <div class="service-category mb-4">
+                            <h6 class="service-title"><i class="fas fa-utensils"></i> Food Catering Services</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check service-option">
+                                        <input class="form-check-input" type="checkbox" id="buffet">
+                                        <label class="form-check-label" for="buffet">Buffet Service</label>
+                                    </div>
+                                    <div class="form-check service-option">
+                                        <input class="form-check-input" type="checkbox" id="plated">
+                                        <label class="form-check-label" for="plated">Plated Service</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check service-option">
+                                        <input class="form-check-input" type="checkbox" id="family">
+                                        <label class="form-check-label" for="family">Family Style</label>
+                                    </div>
+                                    <div class="form-check service-option">
+                                        <input class="form-check-input" type="checkbox" id="cocktail">
+                                        <label class="form-check-label" for="cocktail">Cocktail Service</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Services -->
+                        <div class="service-category">
+                            <h6 class="service-title"><i class="fas fa-plus-circle"></i> Additional Services</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check service-option">
+                                        <input class="form-check-input" type="checkbox" id="decoration">
+                                        <label class="form-check-label" for="decoration">Decoration Service</label>
+                                    </div>
+                                    <div class="form-check service-option">
+                                        <input class="form-check-input" type="checkbox" id="music">
+                                        <label class="form-check-label" for="music">Music System</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check service-option">
+                                        <input class="form-check-input" type="checkbox" id="photography">
+                                        <label class="form-check-label" for="photography">Photography</label>
+                                    </div>
+                                    <div class="form-check service-option">
+                                        <input class="form-check-input" type="checkbox" id="waiting">
+                                        <label class="form-check-label" for="waiting">No Need</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-submit">Submit Order</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Check if user is registered
+        function checkRegistration() {
+            const isRegistered = localStorage.getItem('isRegistered');
+            if (!isRegistered) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Registration Required',
+                    text: 'Please register first to place an order.',
+                    confirmButtonColor: '#ff6600',
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancel',
+                    confirmButtonText: 'Register Now'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'register.html';
+                    }
+                });
+                return false;
+            }
+            return true;
+        }
+
+        // Form validation and progress tracking
+        (function () {
+            'use strict'
+            const form = document.getElementById('cateringForm');
+            const progressBar = document.querySelector('.progress-bar');
+            const totalFields = form.querySelectorAll('input[required]').length;
+            let filledFields = 0;
+            
+            // Update progress bar
+            function updateProgress() {
+                filledFields = Array.from(form.querySelectorAll('input[required]')).filter(input => input.value.trim() !== '').length;
+                const progress = (filledFields / totalFields) * 100;
+                progressBar.style.width = `${progress}%`;
+                progressBar.setAttribute('aria-valuenow', progress);
+            }
+
+            // Add input event listeners to all required fields
+            form.querySelectorAll('input[required]').forEach(input => {
+                input.addEventListener('input', updateProgress);
+            });
+            
+            // Form submission handling
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                
+                // Check registration first
+                if (!checkRegistration()) {
+                    return;
+                }
+                
+                // Check form validity
+                if (!form.checkValidity()) {
+                    event.stopPropagation();
+                    form.classList.add('was-validated');
+                    
+                    // Show error alert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Form Incomplete',
+                        text: 'Please fill in all required fields correctly.',
+                        confirmButtonColor: '#ff6600'
+                    });
+                    return;
+                }
+
+                // Check if at least one service is selected
+                const serviceCheckboxes = form.querySelectorAll('input[type="checkbox"]');
+                const isServiceSelected = Array.from(serviceCheckboxes).some(checkbox => checkbox.checked);
+                
+                if (!isServiceSelected) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'No Service Selected',
+                        text: 'Please select at least one service.',
+                        confirmButtonColor: '#28a745'
+                    });
+                    return;
+                }
+
+                // Check food type selection
+                const foodTypeSelected = form.querySelector('input[name="foodType"]:checked');
+                if (!foodTypeSelected) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Food Type Not Selected',
+                        text: 'Please select a food type.',
+                        confirmButtonColor: '#28a745'
+                    });
+                    return;
+                }
+
+                // Check plate counts based on food type
+                const vegPlates = document.getElementById('vegPlates');
+                const nonVegPlates = document.getElementById('nonVegPlates');
+                const guestCount = document.getElementById('guestCount').value;
+
+                if (foodTypeSelected.value === 'both' && 
+                    (parseInt(vegPlates.value) + parseInt(nonVegPlates.value)) !== parseInt(guestCount)) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Plate Count Mismatch',
+                        text: 'Total number of plates should match the guest count.',
+                        confirmButtonColor: '#28a745'
+                    });
+                    return;
+                }
+
+                // If all validations pass, show success message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Order Submitted Successfully!',
+                    text: 'We will contact you shortly to confirm your order.',
+                    confirmButtonColor: '#28a745'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Reset form
+                        form.reset();
+                        form.classList.remove('was-validated');
+                        updateProgress();
+                    }
+                });
+            });
+
+            // Dynamic plate count validation
+            const foodTypeRadios = document.querySelectorAll('input[name="foodType"]');
+            const vegPlates = document.getElementById('vegPlates');
+            const nonVegPlates = document.getElementById('nonVegPlates');
+
+            foodTypeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'veg') {
+                        nonVegPlates.disabled = true;
+                        nonVegPlates.value = '';
+                    } else if (this.value === 'nonVeg') {
+                        vegPlates.disabled = true;
+                        vegPlates.value = '';
+                    } else {
+                        vegPlates.disabled = false;
+                        nonVegPlates.disabled = false;
+                    }
+                    updateProgress();
+                });
+            });
+        })();
+    </script>
+
+    <!-- Add SweetAlert2 for better alerts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
